@@ -25,4 +25,4 @@
 
 
 
-carthago delanda est
+carthago delenda est
