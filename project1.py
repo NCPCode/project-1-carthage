@@ -50,6 +50,14 @@ class Ball:
 			(self.coords[1] < player.coords[1] + player.size[1]) and
 			(player.coords[1] < self.coords[1] + self.size[1]))
 
+	def check_if_win(self):
+		if (self.coords[0] < 0):
+			self.coords = self.initial_coords
+			ball.direction[0] = -0.5
+		elif (self.coords[0] > WINDOW_SIZE[0]):
+			self.coords = self.initial_coords
+			ball.direction[0] = -0.5
+
 player1 = Player(
   pygame.Color('white'),
   [490, 250],
@@ -89,12 +97,10 @@ while True:
 		player2.move('down')
 
 	ball.move()
+	ball.check_if_win()
 
-	if ball.has_collided(player1):
-		ball.direction[0] = -1
-		
-	if ball.has_collided(player2):
-		ball.direction[0] = 1
+	if ball.has_collided(player1) or ball.has_collided(player2):
+		ball.direction[0] = ball.direction[0] * -1.25
 
 	window.fill(pygame.Color("black"))
 
